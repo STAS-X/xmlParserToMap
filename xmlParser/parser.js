@@ -19,7 +19,7 @@ const loadXmlContent = async (xmlFilePath) =>
 				}
 			}
 		};
-		xhttp.open('GET', `http://127.0.0.1:5500/xmlFile/${xmlFilePath}`, true);
+		xhttp.open('GET', `/xmlFile/${xmlFilePath}`, true);
 		xhttp.send();
 		//console.log('response data', xhttp.responseText);
 	});
@@ -61,5 +61,5 @@ const buildContextData = (xmlDoc) => {
 
 export const buildContextFromXml = async (xmlFile) => {
 	const xmlDoc = await loadXmlContent(xmlFile);
-	return  buildContextData(xmlDoc);
+	return buildContextData(xmlDoc);
 };
