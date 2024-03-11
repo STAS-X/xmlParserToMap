@@ -39,12 +39,17 @@ export const addPolygonToMap = (polygonData) => {
 
 	const customToolTip = `<div style='text-align: center; margin-bottom: 5px; font-size: 1.25em'><b>Подсказка</b></div>Номер объекта: <b>${id}</b><br />Дата объекта: <b>${date}</b>`;
 
-	const polygonPoints = points.map((point) => [point.lat, point.lon]);
+	const polygonPoints = points.map((point, index) => {
+		//new L.Marker([point.lat, point.lon]).addTo(map).bindPopup(`Точка ${index+1}`);
+		return [point.lat, point.lon]}
+		);
 	bounds.extend(polygonPoints);
 
 	// добавляем полигон с сообщением на слой feature
-	const polygon = L.polygon(polygonPoints, polygonOptions);
+	const polygon = new L.polygon(polygonPoints, polygonOptions);
+
 	polygon.bindPopup(customToolTip);
+
 	featureGroup.addLayer(polygon);
 
 	// Приближаемся к экстенту полигона
